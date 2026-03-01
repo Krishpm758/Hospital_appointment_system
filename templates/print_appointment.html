@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Appointment</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 40px;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #223a66;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .details-table th,
+        .details-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .details-table th {
+            width: 40%;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Appointment Details</h1>
+            <p><strong>Hospital Management System</strong></p>
+        </div>
+
+        <table class="details-table">
+            <tr>
+                <th>Appointment ID</th>
+                <td>{{ appointment.id }}</td>
+            </tr>
+            <tr>
+                <th>Patient Name</th>
+                <td>{{ appointment.name }}</td>
+            </tr>
+            <tr>
+                <th>Doctor Name</th>
+                <td>{{ appointment.doctor.name }}</td>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <td>{% if appointment.department %}{{ appointment.department.name }}{% else %}N/A{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ appointment.appointment_date }}</td>
+            </tr>
+            <tr>
+                <th>Time Slot</th>
+                <td>{{ appointment.time_slot }}</td>
+            </tr>
+            <tr>
+                <th>Payment Status</th>
+                <td>{% if appointment.payment_status %}Paid{% else %}Pending{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Patient Age</th>
+                <td>{{ appointment.age }}</td>
+            </tr>
+            <tr>
+                <th>Patient Phone</th>
+                <td>{{ appointment.phone }}</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <p>Generated on {% now "F j, Y, H:i" %}</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            window.print();
+        }
+    </script>
+</body>
+
+</html>

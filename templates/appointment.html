@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{%load crispy_forms_tags %}
+{% block content %}
+
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <h1 class="text-capitalize mb-5 text-lg">Book Appointment</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="appoinment section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="mt-3">
+          <div class="feature-icon mb-3">
+            <i class="icofont-support text-lg"></i>
+          </div>
+          <span class="h3">Call for an Emergency Service!</span>
+          <h2 class="text-color mt-3">+84 789 1256 </h2>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="border border-2 shadow mb-4 mt-4 p-5">
+          <form method="post">
+            {% csrf_token %}
+            <h4 class="mb-3">Consultation Fee: ₹250</h4>
+            {{ form|crispy }}
+            <div class="mb-3">
+              <input type="submit" value="Make Appointment" class="btn btn-main btn-round-full">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
